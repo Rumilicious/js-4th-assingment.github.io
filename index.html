@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Profit/Loss Calculator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			flex-direction: column;
+		}
+		input[type="number"] {
+			width: 50%;
+			margin-bottom: 10px;
+		}
+		#result {
+			margin-top: 20px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<input type="number" id="purchasePrice" placeholder="Enter purchase price" />
+	<input type="number" id="sellingPrice" placeholder="Enter selling price" />
+	<button id="calculate">Calculate</button>
+	<div id="result"></div>
+  <script>
+	const calculateButton = document.getElementById("calculate");
+	calculateButton.addEventListener("click", calculateProfitOrLoss);
+
+	function calculateProfitOrLoss() {
+		const purchasePrice = document.getElementById("purchasePrice").value;
+		const sellingPrice = document.getElementById("sellingPrice").value;
+
+		const difference = sellingPrice - purchasePrice;
+
+		if (difference > 0) {
+			document.getElementById("result").innerText = `Profit: ₹${difference} (100Rs Profit)`;
+		} else {
+			// Use Math.abs() to ensure the amount of loss is not shown with a negative sign
+			const absDifference = Math.abs(difference);
+			document.getElementById("result").innerText = `Loss: ₹${absDifference} (100Rs loss)`;
+		}
+	}
+  </script>
+</body>
+</html>
